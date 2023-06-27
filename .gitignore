@@ -79,5 +79,5 @@ crashlytics-build.properties
 /[Aa]ssets/Project/Temp/
 
 #large files
-/[Aa]ssets/Library
+/Task1/Library
 /[Aa]ssets/Firebase/Plugins
