@@ -8,7 +8,7 @@
 4. Запустите приложение
 ## Проект в Unity
 1.  Склонируйте репозиторий с помощью команды git clone: 
-Copy git clone https://github.com/efefew/Local-Chess.git
+Copy git clone https://github.com/efefew/Task1-Gallery.git
 2.  Откройте проект в Unity.
 3.  Запустите игру, нажав кнопку "Play" в редакторе Unity.
 # Примеры использования
