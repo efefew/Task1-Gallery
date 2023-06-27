@@ -4,7 +4,7 @@
 ## Файл apk
 1. Скачайте файл [Task1.apk](https://github.com/efefew/Task1-Gallery/blob/main/Task1.apk)
 2. Загрузите файл на android
-3. Уствновите файл
+3. Установите файл
 4. Запустите приложение
 ## Проект в Unity
 1.  Склонируйте репозиторий с помощью команды git clone: 
