@@ -19,7 +19,7 @@ public class GalleryManager : MonoBehaviour
     private const int MAX_COUNT = 66;
 
     /// <summary>
-    /// Порог прокрутки
+    /// РџРѕСЂРѕРі РїСЂРѕРєСЂСѓС‚РєРё
     /// </summary>
     private const float SCROLL_THRESHOLD = 0.15f;
 
@@ -48,36 +48,36 @@ public class GalleryManager : MonoBehaviour
 
     #region Methods
     /// <summary>
-    /// Узнаёт существует ли ссылка на Uri (не использую, так как сильно нагружает)
+    /// РЈР·РЅР°С‘С‚ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё СЃСЃС‹Р»РєР° РЅР° Uri (РЅРµ РёСЃРїРѕР»СЊР·СѓСЋ, С‚Р°Рє РєР°Рє СЃРёР»СЊРЅРѕ РЅР°РіСЂСѓР¶Р°РµС‚)
     /// </summary>
-    /// <param name="uri">ссылка</param>
-    /// <returns>Существует ли ссылка на Uri (если возращает true, то ссылка существует)</returns>
+    /// <param name="uri">СЃСЃС‹Р»РєР°</param>
+    /// <returns>РЎСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё СЃСЃС‹Р»РєР° РЅР° Uri (РµСЃР»Рё РІРѕР·СЂР°С‰Р°РµС‚ true, С‚Рѕ СЃСЃС‹Р»РєР° СЃСѓС‰РµСЃС‚РІСѓРµС‚)</returns>
     private static bool CheckUriExists(Uri uri)
     {
         try
         {
-            // Создаем объект HttpWebRequest для отправки HTTP-запроса на Uri
+            // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ HttpWebRequest РґР»СЏ РѕС‚РїСЂР°РІРєРё HTTP-Р·Р°РїСЂРѕСЃР° РЅР° Uri
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            request.Method = "HEAD"; // Используем метод HEAD для получения только заголовков ответа, без тела
+            request.Method = "HEAD"; // РСЃРїРѕР»СЊР·СѓРµРј РјРµС‚РѕРґ HEAD РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ С‚РѕР»СЊРєРѕ Р·Р°РіРѕР»РѕРІРєРѕРІ РѕС‚РІРµС‚Р°, Р±РµР· С‚РµР»Р°
 
-            // Получаем ответ на HTTP-запрос
+            // РџРѕР»СѓС‡Р°РµРј РѕС‚РІРµС‚ РЅР° HTTP-Р·Р°РїСЂРѕСЃ
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
-            // Проверяем код состояния ответа
+            // РџСЂРѕРІРµСЂСЏРµРј РєРѕРґ СЃРѕСЃС‚РѕСЏРЅРёСЏ РѕС‚РІРµС‚Р°
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                // Ссылка существует
+                // РЎСЃС‹Р»РєР° СЃСѓС‰РµСЃС‚РІСѓРµС‚
                 return true;
             }
             else
             {
-                // Ссылка не существует
+                // РЎСЃС‹Р»РєР° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
                 return false;
             }
         }
         catch (Exception)
         {
-            // Произошла ошибка при отправке HTTP-запроса или получении ответа
+            // РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ HTTP-Р·Р°РїСЂРѕСЃР° РёР»Рё РїРѕР»СѓС‡РµРЅРёРё РѕС‚РІРµС‚Р°
             return false;
         }
     }
@@ -92,7 +92,7 @@ public class GalleryManager : MonoBehaviour
 
     private void Update()
     {
-        //при достижении порога подгружаются новые картинки
+        //РїСЂРё РґРѕСЃС‚РёР¶РµРЅРёРё РїРѕСЂРѕРіР° РїРѕРґРіСЂСѓР¶Р°СЋС‚СЃСЏ РЅРѕРІС‹Рµ РєР°СЂС‚РёРЅРєРё
         if (scrollImages.verticalScrollbar.value < SCROLL_THRESHOLD /*&& countImageLoading == 0*/)
         {
             AddImageBlocks(2);
@@ -105,11 +105,11 @@ public class GalleryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Загрузка текстуры
+    /// Р—Р°РіСЂСѓР·РєР° С‚РµРєСЃС‚СѓСЂС‹
     /// </summary>
-    /// <param name="function">функция вызываемая при успешной загрузке</param>
-    /// <param name="url">ссылка на текстуру</param>
-    /// <param name="parameters">дополнительные параметры</param>
+    /// <param name="function">С„СѓРЅРєС†РёСЏ РІС‹Р·С‹РІР°РµРјР°СЏ РїСЂРё СѓСЃРїРµС€РЅРѕР№ Р·Р°РіСЂСѓР·РєРµ</param>
+    /// <param name="url">СЃСЃС‹Р»РєР° РЅР° С‚РµРєСЃС‚СѓСЂСѓ</param>
+    /// <param name="parameters">РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹</param>
     /// <returns></returns>
     private IEnumerator DownloadTexture(ImageFromURLHandler function, Uri url, object[] parameters = null)
     {
@@ -118,7 +118,7 @@ public class GalleryManager : MonoBehaviour
 
         if (uwr.result == UnityWebRequest.Result.Success)
         {
-            // Получить загруженный пакет ресурсов
+            // РџРѕР»СѓС‡РёС‚СЊ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ РїР°РєРµС‚ СЂРµСЃСѓСЂСЃРѕРІ
             Texture2D texture = DownloadHandlerTexture.GetContent(uwr);
             function?.Invoke(texture, parameters);
         }
@@ -130,10 +130,10 @@ public class GalleryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Реализация ImageBlock при успешной загрузке текстуры
+    /// Р РµР°Р»РёР·Р°С†РёСЏ ImageBlock РїСЂРё СѓСЃРїРµС€РЅРѕР№ Р·Р°РіСЂСѓР·РєРµ С‚РµРєСЃС‚СѓСЂС‹
     /// </summary>
-    /// <param name="texture">текстура</param>
-    /// <param name="parameters">дополнительные параметры (в данном случае ссылка на ImageBlock)</param>
+    /// <param name="texture">С‚РµРєСЃС‚СѓСЂР°</param>
+    /// <param name="parameters">РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ (РІ РґР°РЅРЅРѕРј СЃР»СѓС‡Р°Рµ СЃСЃС‹Р»РєР° РЅР° ImageBlock)</param>
     private void OnDownloadTextureImageBlock(Texture2D texture, object[] parameters)
     {
         ImageBlock imageBlock = (ImageBlock)parameters[0];
@@ -143,9 +143,9 @@ public class GalleryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Подгрузка новых картинок
+    /// РџРѕРґРіСЂСѓР·РєР° РЅРѕРІС‹С… РєР°СЂС‚РёРЅРѕРє
     /// </summary>
-    /// <param name="count">количество картинок</param>
+    /// <param name="count">РєРѕР»РёС‡РµСЃС‚РІРѕ РєР°СЂС‚РёРЅРѕРє</param>
     public void AddImageBlocks(int count)
     {
         for (int id = 0; id < count; id++)
@@ -162,9 +162,9 @@ public class GalleryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Выбранное изображение отображается на весь экран
+    /// Р’С‹Р±СЂР°РЅРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РЅР° РІРµСЃСЊ СЌРєСЂР°РЅ
     /// </summary>
-    /// <param name="imageBlock">Выбранное изображение</param>
+    /// <param name="imageBlock">Р’С‹Р±СЂР°РЅРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ</param>
     public void SetFullScreen(ImageBlock imageBlock)
     {
         Screen.orientation = ScreenOrientation.AutoRotation;
@@ -174,7 +174,7 @@ public class GalleryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Возвращает в Галерею
+    /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РІ Р“Р°Р»РµСЂРµСЋ
     /// </summary>
     public void SetScrollImages()
     {
